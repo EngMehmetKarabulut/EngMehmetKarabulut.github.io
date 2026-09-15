@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mehmet Karabulut — Petrol ve Doğalgaz Mühendisliği</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Slab:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:        #ECE6D6;
+    --paper-dark:   #DBD3BC;
+    --ink:          #1B2430;
+    --ink-soft:     #4B5560;
+    --slate:        #566873;
+    --slate-deep:   #2E4756;
+    --navy-light:   #1C3245;
+    --navy:         #142838;
+    --navy-deep:    #0B1520;
+    --petrol:       #12879A;
+    --petrol-bright:#3FB6C7;
+    --rust:         #B5602F;
+    --line-dark:    rgba(236,230,214,0.16);
+    --line-light:   rgba(27,36,48,0.18);
+    --font-head: 'IBM Plex Slab', Georgia, serif;
+    --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  h1,h2,h3{ font-family:var(--font-head); font-weight:600; line-height:1.15; }
+  section{ padding:5.5rem 1.75rem 5.5rem calc(1.75rem + 148px); }
+  .section-inner{ max-width:760px; margin:0 auto; }
+  .mono{ font-family:var(--font-mono); }
+  .eyebrow-num{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    letter-spacing:0.02em;
+    opacity:0.65;
+    display:block;
+    margin-bottom:0.6rem;
+  }
+  h2.section-title{ font-size:1.9rem; margin-bottom:1.6rem; }
+  p{ max-width:62ch; }
+  .light-section{ color:var(--ink); }
+  .dark-section{ color:var(--paper); }
+  .dark-section .ink-soft{ color:rgba(236,230,214,0.72); }
+  .light-section .ink-soft{ color:var(--ink-soft); }
+
+  /* ---------- fixed depth rail ---------- */
+  #rail{
+    position:fixed; top:0; left:0; bottom:0; width:148px;
+    background:var(--navy-deep);
+    border-right:1px solid var(--line-dark);
+    z-index:50;
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding:1.6rem 0 1.4rem;
+  }
+  #rail .rail-top{ padding:0 1.1rem; }
+  #rail .rail-mark{ color:var(--petrol-bright); font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.06em; }
+  #rail .rail-name{ color:var(--paper); font-family:var(--font-head); font-size:0.92rem; margin-top:0.35rem; line-height:1.3; }
+  #rail nav{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:0; padding:0 1.1rem; }
+  #rail .tick{
+    position:relative; display:block; padding:0.62rem 0 0.62rem 1rem;
+    border-left:2px solid rgba(236,230,214,0.22);
+    color:rgba(236,230,214,0.55);
+    transition:color .18s ease, border-color .18s ease;
+  }
+  #rail .tick .depth{ display:block; font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.02em; }
+  #rail .tick .label{ display:block; font-size:0.78rem; margin-top:0.1rem; }
+  #rail .tick.active{ color:var(--paper); border-left-color:var(--petrol-bright); }
+  #rail .tick.active .depth{ color:var(--petrol-bright); }
+  #rail .rail-bottom{ padding:0 1.1rem; font-family:var(--font-mono); font-size:0.66rem; color:rgba(236,230,214,0.4); }
+
+  /* ---------- mobile top bar ---------- */
+  #mobile-bar{
+    display:none; position:fixed; top:0; left:0; right:0; z-index:60;
+    background:var(--navy-deep); color:var(--paper);
+    align-items:center; justify-content:space-between;
+    padding:0.85rem 1.1rem; border-bottom:1px solid var(--line-dark);
+  }
+  #mobile-bar .cur{ font-family:var(--font-mono); font-size:0.78rem; color:var(--petrol-bright); }
+  #mobile-bar button{
+    background:none; border:1px solid rgba(236,230,214,0.35); color:var(--paper);
+    font-family:var(--font-mono); font-size:0.72rem; padding:0.35rem 0.7rem; border-radius:2px;
+  }
+  #mobile-menu{
+    display:none; position:fixed; top:48px; left:0; right:0; z-index:59;
+    background:var(--navy-deep); border-bottom:1px solid var(--line-dark); padding:0.5rem 0;
+  }
+  #mobile-menu.open{ display:block; }
+  #mobile-menu a{
+    display:flex; justify-content:space-between; color:rgba(236,230,214,0.8);
+    padding:0.7rem 1.2rem; font-size:0.9rem; border-bottom:1px solid rgba(236,230,214,0.08);
+  }
+  #mobile-menu a .depth{ font-family:var(--font-mono); font-size:0.72rem; color:var(--petrol-bright); }
+
+  @media (max-width:880px){
+    #rail{ display:none; }
+    #mobile-bar{ display:flex; }
+    section{ padding:4rem 1.4rem; padding-top:4.5rem; }
+    section:first-of-type{ padding-top:5.5rem; }
+  }
+
+  /* ---------- hero ---------- */
+  #hero{ background:var(--paper); padding-top:7rem; padding-bottom:6rem; }
+  #hero .tag{
+    font-family:var(--font-mono); font-size:0.85rem; color:var(--petrol);
+    border:1px solid var(--petrol); display:inline-block; padding:0.25rem 0.6rem;
+    border-radius:2px; margin-bottom:1.4rem;
+  }
+  #hero h1{ font-size:clamp(2.2rem, 5vw, 3.2rem); max-width:14ch; }
+  #hero .role{ font-size:1.15rem; color:var(--ink-soft); margin-top:0.9rem; max-width:46ch; }
+  #hero .summary{ margin-top:1.4rem; color:var(--ink-soft); }
+
+  .titleblock{
+    margin-top:2.6rem; border:1px solid var(--line-light); background:rgba(255,255,255,0.35);
+  }
+  .titleblock .row{ display:flex; flex-wrap:wrap; border-bottom:1px solid var(--line-light); }
+  .titleblock .row:last-child{ border-bottom:none; }
+  .titleblock .cell{
+    flex:1 1 200px; padding:0.75rem 1rem; border-right:1px solid var(--line-light);
+  }
+  .titleblock .cell:last-child{ border-right:none; }
+  .titleblock .cell .k{ font-family:var(--font-mono); font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--rust); display:block; margin-bottom:0.2rem; }
+  .titleblock .cell .v{ font-size:0.92rem; word-break:break-word; }
+  .titleblock .cell a:hover{ color:var(--petrol); }
+
+  /* ---------- about ---------- */
+  #about{ background:var(--paper-dark); }
+
+  /* ---------- experience / strata ---------- */
+  #experience{ background:var(--slate); }
+  #experience .strata{ border-left:3px solid rgba(236,230,214,0.3); margin-top:0.5rem; }
+  .layer{ position:relative; padding:1.6rem 0 1.6rem 1.8rem; border-bottom:1px solid rgba(236,230,214,0.15); }
+  .layer:last-child{ border-bottom:none; }
+  .layer::before{
+    content:''; position:absolute; left:-6.5px; top:1.9rem; width:11px; height:11px;
+    background:var(--petrol-bright); border-radius:50%; border:2px solid var(--slate);
+  }
+  .layer .when{ font-family:var(--font-mono); font-size:0.76rem; color:var(--petrol-bright); }
+  .layer h3{ font-size:1.15rem; margin-top:0.3rem; color:var(--paper); }
+  .layer .co{ font-size:0.92rem; color:rgba(236,230,214,0.65); margin-top:0.1rem; }
+  .layer p{ margin-top:0.6rem; color:rgba(236,230,214,0.78); font-size:0.94rem; }
+
+  /* ---------- projects ---------- */
+  #projects{ background:var(--slate-deep); }
+  .proj{ border:1px solid rgba(236,230,214,0.2); padding:1.5rem 1.6rem; margin-top:1.4rem; }
+  .proj h3{ color:var(--paper); font-size:1.15rem; }
+  .proj .role{ font-family:var(--font-mono); font-size:0.76rem; color:var(--petrol-bright); margin-top:0.25rem; }
+  .proj ul{ margin-top:0.8rem; padding-left:1.1rem; color:rgba(236,230,214,0.8); font-size:0.94rem; }
+  .proj li{ margin-bottom:0.4rem; }
+
+  /* ---------- skills legend ---------- */
+  #skills{ background:var(--navy-light); }
+  .legend-group{ margin-bottom:1.8rem; }
+  .legend-group h4{
+    font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--petrol-bright); margin-bottom:0.8rem;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:0.5rem; }
+  .chip{
+    display:flex; align-items:center; gap:0.5rem; border:1px solid rgba(236,230,214,0.25);
+    padding:0.4rem 0.75rem; font-size:0.85rem; color:var(--paper);
+  }
+  .chip .swatch{ width:8px; height:8px; background:var(--rust); flex-shrink:0; }
+
+  /* ---------- blog / field notes ---------- */
+  #notes{ background:var(--navy); }
+  .entry{
+    background:var(--paper); color:var(--ink); border:1px solid var(--line-light);
+    padding:1.5rem 1.6rem; margin-top:1.2rem;
+  }
+  .entry .meta{ font-family:var(--font-mono); font-size:0.74rem; color:var(--petrol); }
+  .entry h3{ font-size:1.15rem; margin-top:0.4rem; }
+  .entry p{ margin-top:0.5rem; color:var(--ink-soft); font-size:0.94rem; }
+  .entry .read{ display:inline-block; margin-top:0.8rem; font-size:0.85rem; color:var(--petrol); border-bottom:1px solid var(--petrol); }
+  .notes-empty{ border:1px dashed rgba(236,230,214,0.3); padding:1.5rem 1.6rem; margin-top:1.2rem; color:rgba(236,230,214,0.6); font-size:0.9rem; }
+
+  /* ---------- interests strip ---------- */
+  #interests{ background:var(--navy); border-top:1px solid rgba(236,230,214,0.1); padding-top:0; padding-bottom:3rem; }
+  #interests .section-inner{ padding-top:0; }
+  #interests .list{ font-size:0.9rem; color:rgba(236,230,214,0.65); }
+
+  /* ---------- footer / contact ---------- */
+  #contact{ background:var(--navy-deep); padding-bottom:4rem; }
+  #contact h2{ color:var(--paper); }
+  #contact .lead{ color:rgba(236,230,214,0.7); margin-top:0.6rem; }
+  .contact-links{ margin-top:2rem; display:flex; flex-direction:column; gap:0.9rem; }
+  .contact-links a{
+    font-size:1rem; color:var(--paper); border-bottom:1px solid rgba(236,230,214,0.25);
+    padding-bottom:0.6rem; display:flex; justify-content:space-between; max-width:420px;
+  }
+  .contact-links a .k{ font-family:var(--font-mono); font-size:0.72rem; color:var(--petrol-bright); align-self:center; }
+  footer{ margin-top:3rem; font-family:var(--font-mono); font-size:0.72rem; color:rgba(236,230,214,0.35); }
+</style>
+</head>
+<body>
+
+<div id="mobile-bar">
+  <span class="cur mono" id="curDepth">000 m — Giriş</span>
+  <button id="menuBtn">MENÜ</button>
+</div>
+<div id="mobile-menu"></div>
+
+<aside id="rail">
+  <div class="rail-top">
+    <span class="rail-mark">MK-01</span>
+    <div class="rail-name">Mehmet<br>Karabulut</div>
+  </div>
+  <nav id="railNav"></nav>
+  <div class="rail-bottom">İTÜ · Petrol ve<br>Doğalgaz Müh.</div>
+</aside>
+
+<main>
+
+  <section id="hero" data-depth="0 m" data-label="Giriş" class="light-section">
+    <div class="section-inner">
+      <span class="tag">Petrol ve Doğalgaz Mühendisliği</span>
+      <h1>Mehmet Karabulut</h1>
+      <p class="role">İstanbul Teknik Üniversitesi, Petrol ve Doğalgaz Mühendisliği — Son Sınıf. Sondaj, rezervuar, jeotermal, üretim ve workover mühendisliği alanlarında sahada edinilmiş deneyim.</p>
+      <p class="summary">Bu sayfa hem bir dijital kartvizit hem de sektörde öğrendiklerimi paylaştığım bir alan notu defteri olarak işliyor. Aşağıda deneyimlerimi, projelerimi ve zamanla ekleyeceğim saha notlarımı bulabilirsiniz.</p>
+
+      <div class="titleblock">
+        <div class="row">
+          <div class="cell">
+            <span class="k">Konum</span>
+            <span class="v">Ankara, Türkiye</span>
+          </div>
+          <div class="cell">
+            <span class="k">E-posta</span>
+            <span class="v"><a href="mailto:karabulutmmt@gmail.com">karabulutmmt@gmail.com</a></span>
+          </div>
+          <div class="cell">
+            <span class="k">Telefon</span>
+            <span class="v"><a href="tel:+905525790640">+90 552 579 0640</a></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="cell">
+            <span class="k">LinkedIn</span>
+            <span class="v"><a href="https://linkedin.com/in/mehmetkarabulut1" target="_blank" rel="noopener">linkedin.com/in/mehmetkarabulut1</a></span>
+          </div>
+          <div class="cell">
+            <span class="k">GitHub</span>
+            <span class="v"><a href="https://github.com/Mehmetkarabulut1" target="_blank" rel="noopener">github.com/Mehmetkarabulut1</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" data-depth="150 m" data-label="Hakkımda" class="light-section">
+    <div class="section-inner">
+      <span class="eyebrow-num mono">150 m</span>
+      <h2 class="section-title">Hakkımda</h2>
+      <p>İTÜ Petrol ve Doğalgaz Mühendisliği bölümünde son sınıf öğrencisiyim, aynı zamanda İstanbul Üniversitesi'nde Bilgisayar Programcılığı okuyorum. Sondaj parametreleri izleme, çamur mühendisliği hesaplamaları, kuyu dibi stabilite analizi, jeotermal rezervuar mühendisliği ve üretim optimizasyonu gibi konularda çeşitli şirketlerde saha ve ofis deneyimi edindim.</p>
+      <p style="margin-top:1rem;">Otonom sistemler alanında ITU UZMAR ASTeam'de proje kaptanlığı yaptım; bitirme projemde ağır ham petrol sahası geliştirme üzerine rezervüar simülasyonu ve ekonomik analiz çalıştım. B sınıfı ehliyetim var, askerlik hizmetim Aralık 2028'e kadar tecilli.</p>
+    </div>
+  </section>
+
+  <section id="experience" data-depth="600 m" data-label="Deneyim" class="dark-section">
+    <div class="section-inner">
+      <span class="eyebrow-num mono">600 m</span>
+      <h2 class="section-title">Deneyim</h2>
+      <p class="ink-soft">Aşağıdaki katmanlar, kronolojik olarak en yeniden en eskiye doğru sıralı saha ve ofis deneyimlerimi gösteriyor.</p>
+
+      <div class="strata">
+        <div class="layer">
+          <span class="when mono">09.03.2026 – 01.06.2026</span>
+          <h3>Uzun Dönem Stajyer — Jeotermal Rezervuar Mühendisliği</h3>
+          <div class="co">Güriş İnşaat — Mogan Enerji</div>
+          <p>Kuyu testi, çimentolama hesaplamaları ve kuyu kontrolü dahil jeotermal rezervuar mühendisliği alanında teorik bilgi edindim.</p>
+        </div>
+        <div class="layer">
+          <span class="when mono">25.08.2025 – 12.09.2025</span>
+          <h3>Stajyer — Sondaj Mühendisliği</h3>
+          <div class="co">Turkish Petroleum International Company</div>
+          <p>Sondaj parametrelerinin izlenmesi, çamur mühendisliği hesaplamaları, kuyu dibi stabilite analizi ve saha operasyonlarının mühendislik perspektifinden değerlendirilmesi konularında teorik ve pratik bilgi edindim.</p>
+        </div>
+        <div class="layer">
+          <span class="when mono">04.08.2025 – 22.08.2025</span>
+          <h3>Stajyer — Yapım Denetimi Mühendisliği</h3>
+          <div class="co">İGDAŞ</div>
+          <p>Çelik ve polietilen boru hattı montaj teknikleri, basınç testi prosedürleri ve regülatör sistemleri üzerine uygulamalı deneyim kazandım; teknik dokümantasyon ve güvenlik standartları becerilerimi geliştirdim.</p>
+        </div>
+        <div class="layer">
+          <span class="when mono">01.03.2025 – 30.06.2025</span>
+          <h3>Yarı Zamanlı Öğrenci Asistanı</h3>
+          <div class="co">Eurasia Institute of Earth Sciences</div>
+          <p>Enstitünün günlük iş akışını desteklemek üzere ofis operasyonları ve idari görevlerde yer aldım.</p>
+        </div>
+        <div class="layer">
+          <span class="when mono">28.08.2024 – 27.09.2024</span>
+          <h3>Stajyer — Üretim ve Workover Mühendisliği</h3>
+          <div class="co">TransAtlantic Petroleum LLC</div>
+          <p>Kuyu bakımı, onarım operasyonları ve üretim optimizasyonu — özellikle asitleme ve hidrolik çatlatma operasyonları — konusunda teorik ve pratik bilgi edindim. Kuyu performansını değerlendirmek için akustik ve dinamometre testleri gerçekleştirdim.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" data-depth="1200 m" data-label="Projeler" class="dark-section">
+    <div class="section-inner">
+      <span class="eyebrow-num mono">1200 m</span>
+      <h2 class="section-title">Projeler</h2>
+
+      <div class="proj">
+        <h3>ITU UZMAR ASTeam</h3>
+        <div class="role">Proje Kaptanı</div>
+        <ul>
+          <li>Ulusal ve uluslararası otonom araç yarışmaları için çok disiplinli bir ekibi yönettim ve teknik koordinasyonu sağladım.</li>
+          <li>"Beeast" teknesinin epoksi fiberglas ile üretim ve onarımını gerçekleştirdim; Fusion 360 ve AutoCAD ile mekanik bileşenler tasarladım.</li>
+          <li>Yeni bir uzaktan kumandalı araç (ROV) projesinin Ar-Ge aşamasını başlattım; Python ve ROS ile görüntü işleme sistemleri geliştirdim.</li>
+        </ul>
+      </div>
+
+      <div class="proj">
+        <h3>Bitirme Projesi — Ağır Ham Petrol Sahası Geliştirme</h3>
+        <div class="role">Kappa Rubis · Rezervuar Simülasyonu</div>
+        <ul>
+          <li>Karmaşık akışkan hareketini modellemek ve ağır petrol üretim stratejilerini değerlendirmek için Kappa Rubis ile ileri rezervuar simülasyonları gerçekleştirdim.</li>
+          <li>Akış verimliliğini ve kuyu dibi stabilitesini sağlamak için kuyu tamamlama tasarımı ve hidrolik hesaplamalar yaptım.</li>
+          <li>Saha geliştirme planlarını optimize etmek için malzeme dengesi ve Darcy tabanlı hesaplamalar uyguladım.</li>
+          <li>CAPEX/OPEX tahminleri ve NPV hesaplamaları dahil kapsamlı ekonomik analizler yürüttüm.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" data-depth="1650 m" data-label="Yetkinlikler" class="dark-section">
+    <div class="section-inner">
+      <span class="eyebrow-num mono">1650 m</span>
+      <h2 class="section-title">Yetkinlikler &amp; Sertifikalar</h2>
+
+      <div class="legend-group">
+        <h4>Mühendislik &amp; Yazılım</h4>
+        <div class="chips">
+          <span class="chip"><span class="swatch"></span>Python</span>
+          <span class="chip"><span class="swatch"></span>Kappa Rubis</span>
+          <span class="chip"><span class="swatch"></span>CMG</span>
+          <span class="chip"><span class="swatch"></span>MATLAB</span>
+          <span class="chip"><span class="swatch"></span>Fusion 360</span>
+          <span class="chip"><span class="swatch"></span>AutoCAD</span>
+          <span class="chip"><span class="swatch"></span>MS Office</span>
+        </div>
+      </div>
+
+      <div class="legend-group">
+        <h4>Mühendislik &amp; Teknik Sertifikalar</h4>
+        <div class="chips">
+          <span class="chip"><span class="swatch"></span>Drilling and Well Servicing (Learn To Drill)</span>
+          <span class="chip"><span class="swatch"></span>Natural Gas (Coursera)</span>
+          <span class="chip"><span class="swatch"></span>MATLAB Onramp</span>
+          <span class="chip"><span class="swatch"></span>Python Fundamentals (BTK Academy)</span>
+          <span class="chip"><span class="swatch"></span>Excel Fundamentals (BTK Academy)</span>
+        </div>
+      </div>
+
+      <div class="legend-group">
+        <h4>Yönetim &amp; Profesyonel</h4>
+        <div class="chips">
+          <span class="chip"><span class="swatch"></span>Project Management Fundamentals</span>
+          <span class="chip"><span class="swatch"></span>KOSGEB Girişimcilik Eğitimi</span>
+          <span class="chip"><span class="swatch"></span>Kısa Mesafe Telsiz Operatör Belgesi</span>
+        </div>
+      </div>
+
+      <div class="legend-group">
+        <h4>Saha &amp; Güvenlik</h4>
+        <div class="chips">
+          <span class="chip"><span class="swatch"></span>İlk Yardım (IIENSTITU)</span>
+          <span class="chip"><span class="swatch"></span>Yangın Güvenliği (Learn To Drill)</span>
+          <span class="chip"><span class="swatch"></span>Temel AFAD Gönüllülüğü</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="notes" data-depth="2100 m" data-label="Saha Notları" class="dark-section">
+    <div class="section-inner">
+      <span class="eyebrow-num mono">2100 m</span>
+      <h2 class="section-title">Saha Notları</h2>
+      <p class="ink-soft" style="color:rgba(236,230,214,0.7);">Sektöre yeni başlayan biri olarak öğrendiklerimi buraya not ediyorum. Aşağıdaki kartlar örnek şablon — her yeni yazı için bu bloğu kopyalayıp kendi başlık, tarih ve metninizi ekleyebilirsiniz (koddaki "entry" bloğu).</p>
+
+      <div class="entry">
+        <span class="meta mono">14.09.2026 · SAHA NOTU</span>
+        <h3>Örnek başlık: Kuyu testi sırasında dikkat ettiğim üç şey</h3>
+        <p>Bu alana yazının kısa bir özetini (2-3 cümle) yazın. Tüm yazıyı burada tutabilir ya da ayrı bir sayfaya bağlantı verebilirsiniz.</p>
+        <span class="read">Yazının tamamı</span>
+      </div>
+
+      <div class="entry">
+        <span class="meta mono">— · TASLAK</span>
+        <h3>Örnek başlık: Çamur mühendisliğine ilk bakış</h3>
+        <p>İkinci bir örnek yazı kartı. Yayına hazır olduğunuzda tarihi güncelleyip içeriği değiştirin.</p>
+        <span class="read">Yazının tamamı</span>
+      </div>
+
+      <div class="notes-empty">+ Yeni bir saha notu eklemek için bu bölümdeki bir "entry" bloğunu kopyalayıp içeriğini değiştirin.</div>
+    </div>
+  </section>
+
+  <section id="interests" data-depth="2300 m" data-label="İlgi Alanları" class="dark-section">
+    <div class="section-inner">
+      <span class="eyebrow-num mono">2300 m</span>
+      <h2 class="section-title" style="font-size:1.3rem;">İlgi Alanları</h2>
+      <p class="list">P2 Yamaç Paraşütü Pilotu · CMAS 1 Yıldız Tüplü Dalış · Yelken Sporcusu &amp; Eğitmeni · Bisiklet · Dağcılık · Kamp · Amatör Bağlama · Manzara ve Sokak Fotoğrafçılığı. Ayrıca 2019'dan beri yelken koçluğu ve eğitmenliği yapıyorum (Hedef Sailing, Gemini Sailing).</p>
+    </div>
+  </section>
+
+  <section id="contact" data-depth="2450 m" data-label="İletişim" class="dark-section">
+    <div class="section-inner">
+      <span class="eyebrow-num mono">TD — 2450 m</span>
+      <h2 class="section-title">İletişim</h2>
+      <p class="lead">Sektörle ilgili bir konuda konuşmak, staj/iş fırsatlarını değerlendirmek ya da saha notlarım hakkında yorum yapmak isterseniz aşağıdan ulaşabilirsiniz.</p>
+      <div class="contact-links">
+        <a href="mailto:karabulutmmt@gmail.com"><span>karabulutmmt@gmail.com</span><span class="k">E-POSTA</span></a>
+        <a href="tel:+905525790640"><span>+90 552 579 0640</span><span class="k">TELEFON</span></a>
+        <a href="https://linkedin.com/in/mehmetkarabulut1" target="_blank" rel="noopener"><span>linkedin.com/in/mehmetkarabulut1</span><span class="k">LINKEDIN</span></a>
+        <a href="https://github.com/Mehmetkarabulut1" target="_blank" rel="noopener"><span>github.com/Mehmetkarabulut1</span><span class="k">GITHUB</span></a>
+      </div>
+      <footer>MK-01 · Ankara, Türkiye · Bu sayfa statik bir HTML dosyasıdır.</footer>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  const sections = Array.from(document.querySelectorAll('main > section'));
+
+  // build rail nav
+  const railNav = document.getElementById('railNav');
+  const mobileMenu = document.getElementById('mobile-menu');
+  sections.forEach(sec => {
+    const depth = sec.getAttribute('data-depth');
+    const label = sec.getAttribute('data-label');
+    const id = sec.id;
+
+    const tick = document.createElement('a');
+    tick.className = 'tick';
+    tick.href = '#' + id;
+    tick.innerHTML = '<span class="depth">' + depth + '</span><span class="label">' + label + '</span>';
+    railNav.appendChild(tick);
+
+    const mItem = document.createElement('a');
+    mItem.href = '#' + id;
+    mItem.innerHTML = '<span>' + label + '</span><span class="depth">' + depth + '</span>';
+    mobileMenu.appendChild(mItem);
+  });
+
+  const ticks = Array.from(document.querySelectorAll('#rail .tick'));
+  const curDepth = document.getElementById('curDepth');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        const depth = entry.target.getAttribute('data-depth');
+        const label = entry.target.getAttribute('data-label');
+        ticks.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + id));
+        curDepth.textContent = depth + ' — ' + label;
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+
+  sections.forEach(sec => observer.observe(sec));
+
+  document.getElementById('menuBtn').addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.addEventListener('click', (e) => {
+    if(e.target.closest('a')) mobileMenu.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>
