@@ -44,17 +44,34 @@
   h2.section-title { font-size: 2.2rem; margin-bottom: 2.5rem; position: relative; padding-bottom: 0.5rem; }
   h2.section-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 60px; height: 4px; background: var(--primary); border-radius: 2px; }
 
-  #hero { background-color: #F2F7F3; } 
-  #about { background-color: #E7F0EA; } 
-  #experience { background-color: #D3E7E1; } 
-  #projects { background-color: #C3DEE6; } 
-  #skills { background-color: #B3D2DE; } 
-  #notes { background-color: #FAFCFA; } 
-  #interests { background-color: #EDF4F5; } 
-  #contact { background-color: #234A54; color: #ffffff; }
-  #contact h2.section-title { color: #ffffff; }
-  #contact h2.section-title::after { background: #6ee7b7; } 
-  #contact p { color: rgba(255, 255, 255, 0.8); }
+:root {
+    /* Ana Vurgu Rengi: Güven veren, modern mühendislik mavisi */
+    --primary: #0284c7; 
+    --primary-hover: #0369a1;
+    
+    /* Aksan Rengi: Enerji ve doğalgazı simgeleyen bakır/turuncu dokunuş */
+    --accent: #ea580c; 
+    
+    /* Metin Renkleri (Daha keskin okunabilirlik için) */
+    --text-main: #0f172a; /* Çok koyu mat lacivert/siyah */
+    --text-muted: #475569;
+    
+    /* Kart Yapıları */
+    --card-bg: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.08); /* Çizgiler biraz daha belirgin */
+    
+    /* Gölgeler */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+    
+    /* Tipografi */
+    --font-head: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+    
+    --radius-md: 12px;
+    --radius-lg: 16px;
+  }
 
   #rail { position: fixed; top: 0; left: 0; bottom: 0; width: 240px; background-color: #1B3940; box-shadow: 2px 0 10px rgba(0,0,0,0.1); z-index: 50; display: flex; flex-direction: column; justify-content: space-between; padding: 3rem 0; }
   #rail .rail-top { padding: 0 2rem; }
