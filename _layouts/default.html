@@ -279,8 +279,18 @@
 
 <main>
 
-  <!-- İŞTE SİHRİN GERÇEKLEŞTİĞİ YER BURASI -->
-  {{ content }}
+  <article class="post-content">
+    
+    <!-- Makale Başlığı ve Tarihi Otomatik Gelecek -->
+    <h1>{{ page.title }}</h1>
+    <span class="post-meta">{{ page.date | date: "%d.%m.%Y" }}</span>
+    
+    <!-- Senin Markdown Dosyasına Yazdığın İçerik -->
+    <div style="margin-top: 2rem; font-size: 1.1rem; line-height: 1.8;">
+      {{ content }}
+    </div>
+
+  </article>
 
 </main>
 
