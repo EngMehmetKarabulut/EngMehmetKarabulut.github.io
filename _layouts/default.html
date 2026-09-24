@@ -85,12 +85,28 @@
   #rail .tick.active { background: rgba(255,255,255,0.2); color: #ffffff; }
   #rail .rail-bottom { padding: 0 2rem; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
 
-  #mobile-bar { display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 60; background-color: #0f172a; color: #ffffff; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+/* ---------- Mobile Top Bar ---------- */
+  #mobile-bar {
+    display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+    background-color: #0f172a; color: #ffffff;
+    align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
   #mobile-bar .cur { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; }
-  #mobile-bar button { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #ffffff; font-family: var(--font-head); font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; }
-  #mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; z-index: 59; background-color: #0f172a; padding: 0.5rem 0; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+  #mobile-bar button {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #ffffff;
+    font-family: var(--font-head); font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;
+  }
+  #mobile-menu {
+    display: none; position: fixed; top: 60px; left: 0; right: 0; z-index: 59;
+    background-color: #0f172a; padding: 0.5rem 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  }
   #mobile-menu.open { display: block; }
-  #mobile-menu a { display: block; color: #ffffff; font-weight: 500; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  #mobile-menu a {
+    display: block; color: #ffffff; font-weight: 500;
+    padding: 1rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
 
   @media (max-width: 1024px) {
     #rail { display: none; }
