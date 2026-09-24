@@ -75,7 +75,13 @@
   #contact h2.section-title::after { background: var(--primary); } 
   #contact p { color: rgba(255, 255, 255, 0.8); }
 
-  #rail { position: fixed; top: 0; left: 0; bottom: 0; width: 240px; background-color: #1B3940; box-shadow: 2px 0 10px rgba(0,0,0,0.1); z-index: 50; display: flex; flex-direction: column; justify-content: space-between; padding: 3rem 0; }
+/* ---------- Sol Menü (Sidebar) ---------- */
+  #rail {
+    position: fixed; top: 0; left: 0; bottom: 0; width: 240px;
+    background-color: #0f172a; /* BURASI DEĞİŞTİ (#1B3940 idi) */
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    z-index: 50;
+    /* ... altındaki kodlar aynı kalacak ... */
   #rail .rail-top { padding: 0 2rem; }
   #rail .rail-name { font-family: var(--font-head); font-size: 1.35rem; font-weight: 700; color: #ffffff; line-height: 1.2; }
   #rail .rail-role { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 0.5rem; }
@@ -85,10 +91,18 @@
   #rail .tick.active { background: rgba(255,255,255,0.2); color: #ffffff; }
   #rail .rail-bottom { padding: 0 2rem; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
 
-  #mobile-bar { display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 60; background-color: #1B3940; color: #ffffff; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+  #mobile-bar {
+    display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+    background-color: #0f172a; /* BURASI DEĞİŞTİ */
+    /* ... */
+  }
   #mobile-bar .cur { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; }
   #mobile-bar button { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #ffffff; font-family: var(--font-head); font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; }
-  #mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; z-index: 59; background-color: #1B3940; padding: 0.5rem 0; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+  #mobile-menu {
+    display: none; position: fixed; top: 60px; left: 0; right: 0; z-index: 59;
+    background-color: #0f172a; /* BURASI DEĞİŞTİ */
+    /* ... */
+  }  
   #mobile-menu.open { display: block; }
   #mobile-menu a { display: block; color: #ffffff; font-weight: 500; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
