@@ -410,11 +410,17 @@ HTML
       <h2 class="section-title">Saha Notları</h2>
       <p>Sektöre yeni başlayan biri olarak öğrendiklerimi buraya not ediyorum.</p>
 
+      <!-- JEKYLL OTOMATİK BLOG DÖNGÜSÜ BAŞLANGICI -->
+      {% for post in site.posts %}
       <div class="card entry">
-        <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--primary); font-weight: 600; display: block; margin-bottom: 0.5rem;">14.09.2026 · SAHA NOTU</span>
-        <h3>Kuyu testi sırasında dikkat ettiğim üç şey</h3>
-        <a href="#" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; margin-top: 1rem; display: inline-block;">Yazının tamamı &rarr;</a>
+        <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--primary); font-weight: 600; display: block; margin-bottom: 0.5rem;">{{ post.date | date: "%d.%m.%Y" }} · SAHA NOTU</span>
+        <h3>{{ post.title }}</h3>
+        <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+        <a href="{{ post.url }}" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; margin-top: 1rem; display: inline-block;">Yazının tamamı &rarr;</a>
       </div>
+      {% endfor %}
+      <!-- JEKYLL OTOMATİK BLOG DÖNGÜSÜ BİTİŞİ -->
+
     </div>
   </section>
 
