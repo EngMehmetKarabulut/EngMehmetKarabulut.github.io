@@ -25,6 +25,8 @@ Dağcılık geçmişimin bana öğrettiği en önemli kural sahada da geçerlidi
 * **Su ve Rüzgar Geçirmez Dış Katman (Gore-Tex):** Çamur, yağmur ve rüzgara karşı kalkanınızdır.
 * **İş Güvenliği (Kişisel Koruyucu Donanım):** Şirketiniz temin etse bile, kendi ayak yapınıza tam uyum sağlamış, vurmayan bir çelik burunlu/kompozit bot en büyük yatırımınızdır. Reflektörlü yeleğiniz, baretiniz ve koruyucu gözlüğünüz zaten çantanın demirbaşlarıdır.
 
+---
+
 ## 2. Teknoloji ve Kesintisiz Veri
 
 Sahada internet bağlantısı genellikle bir lükstür. Teknik verileri okumak, simülasyonları çalıştırmak veya rapor yazmak için her an "offline" çalışmaya hazır olmalısınız.
@@ -33,6 +35,9 @@ Sahada internet bağlantısı genellikle bir lükstür. Teknik verileri okumak, 
 * **Harici Disk (Rugged/Darbeye Dayanıklı):** Kuyu verileri, loglar ve ağır simülasyon dosyaları (Kappa, CMG) için yedekleme hayat kurtarır. Toza ve düşmeye dayanıklı modelleri tercih edin.
 * **Çoklu Şarj Kabloları ve Çakmaklık Adaptörü:** Pick-up ile arazide turlarken telefonunuzu veya tabletinizi şarj edebilmek kritik bir detaydır.
 
+---
+
+
 ## 3. Pratik Mühendislik Ekipmanları
 
 Sahada her zaman bilgisayar açamazsınız. Bazen bir problemi anında tespit edip not almanız veya ufak bir müdahalede bulunmanız gerekir.
@@ -40,6 +45,11 @@ Sahada her zaman bilgisayar açamazsınız. Bazen bir problemi anında tespit ed
 * **Suya Dayanıklı Not Defteri ve Kalem:** Çamurlu ellerle veya yağmur altında log alırken, normal kağıtlar anında dağılır. "Rite in the Rain" tarzı suya dayanıklı defterler her saha mühendisinin cebinde olmalıdır.
 * **Kafa Lambası:** Kulede veya üretim hattında gece vardiyasında ellerinizin serbest kalması gerekir. Telefon flaşıyla iş yapılmaz.
 * **Multi-tool (Çok Amaçlı Pense):** Ufak tefek mekanik sıkışmalar, kablo sıyırma veya panel açma işlemleri için kemerinizde her zaman kaliteli bir çok amaçlı alet (Leatherman vb.) bulunsun.
+
+
+---
+<br>
+
 
 ## 4. Psikolojik ve Fiziksel Konfor
 
@@ -50,6 +60,7 @@ Konteyner hayatı veya uzak şantiye kampları, mesai bittikten sonra kendi baş
 * **Zihni Boşaltacak Bir Uğraş:** Vardiya sonrası konteynere döndüğünüzde işle aranıza mesafe koymanız gerekir. Benim çantamda genellikle fotoğraf makinem veya müzik dinlemek için gürültü engelleyici bir kulaklık bulunur. Okunacak iyi bir kitap ya da (taşınabilirse) amatör bir enstrüman, saha stresini atmanın en güzel yoludur.
 
 ---
+<br>
 
 <div align="center">
   <img src="/assets/img/saha-cantasi2.jpg" alt="Masa üstünde duran saha ekipmanları dizilimi 2" width="750">
