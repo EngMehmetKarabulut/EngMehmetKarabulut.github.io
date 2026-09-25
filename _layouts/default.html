@@ -214,19 +214,21 @@
 </aside>
 
 <main>
-  <!-- SİHİRLİ BÖLÜM: Ana sayfadaysa normal göster, makaledeyse tasarımlı göster -->
+<!-- SİHİRLİ BÖLÜM: Ana sayfadaysa normal göster, makaledeyse tasarımlı göster -->
   {% if page.is_home %}
     {{ content }}
   {% else %}
     <article class="post-content">
-      <h1>{{ page.title }}</h1>
-      <span class="post-meta">{{ page.date | date: "%d.%m.%Y" }}</span>
-      <div style="margin-top: 2rem; font-size: 1.1rem; line-height: 1.8;">
-        {{ content }}
+      <!-- Makaleyi Ortalamak İçin Eklenen Kapsayıcı Div -->
+      <div style="max-width: 800px; margin: 0 auto;">
+        <h1 style="text-align: center;">{{ page.title }}</h1>
+        <span class="post-meta" style="text-align: center;">{{ page.date | date: "%d.%m.%Y" }}</span>
+        <div style="margin-top: 2rem; font-size: 1.1rem; line-height: 1.8; text-align: justify;">
+          {{ content }}
+        </div>
       </div>
     </article>
   {% endif %}
-
   <!-- İletişim Bölümü Tüm Sayfaların En Altında Çıkar -->
   {% include contact.html %}
 </main>
