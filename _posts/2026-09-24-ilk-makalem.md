@@ -3,13 +3,17 @@ layout: default
 title: "Mühendisin Çantası: Sahaya Giderken Hayat Kurtaran Bavul Hazırlama Rehberi"
 ---
 
-# Mühendisin Çantası: Sahaya Giderken Hayat Kurtaran Bavul Hazırlama Rehberi
-
 Bir mühendis olarak ofis ortamından çıkıp sondaj kulesinin dibine, bir üretim sahasına veya şantiyeye doğru yola çıkıyorsanız, hazırlayacağınız çanta sıradan bir seyahat bavulundan çok daha fazlası olmalıdır. Sahada hava durumu acımasız, vardiyalar uzun ve lojistik imkanlar genellikle kısıtlıdır. 
 
 Hem bir üretim mühendisi hem de yıllarını doğa sporlarına vermiş bir dağcı ve kampçı olarak, sahanın zorlu dinamikleriyle başa çıkmamı sağlayan "saha çantası" stratejimi sizlerle paylaşıyorum. İşte ofis konforunu geride bırakıp aksiyonun merkezine giderken yanınızdan ayırmamanız gerekenler:
 
-![Masa üstünde duran saha ekipmanları dizilimi](assets/img/saha-cantasi.jpg)
+<br>
+
+<div align="center">
+  <img src="/assets/img/saha-cantasi.jpg" alt="Masa üstünde duran saha ekipmanları dizilimi" width="750">
+</div>
+
+<br>
 
 ## 1. Katmanlı Giyim ve Koruma (Outdoor Disiplini)
 
@@ -45,7 +49,12 @@ Konteyner hayatı veya uzak şantiye kampları, mesai bittikten sonra kendi baş
 * **Zihni Boşaltacak Bir Uğraş:** Vardiya sonrası konteynere döndüğünüzde işle aranıza mesafe koymanız gerekir. Benim çantamda genellikle fotoğraf makinem veya müzik dinlemek için gürültü engelleyici bir kulaklık bulunur. Okunacak iyi bir kitap ya da (taşınabilirse) amatör bir enstrüman, saha stresini atmanın en güzel yoludur.
 
 ---
-![Masa üstünde duran saha ekipmanları dizilimi](assets/img/saha-cantasi2.jpg)
+
+<div align="center">
+  <img src="/assets/img/saha-cantasi2.jpg" alt="Masa üstünde duran saha ekipmanları dizilimi 2" width="750">
+</div>
+
+<br>
 
 **Saha, teorinin pratikle sınandığı yerdir.** Çantanızı hazırlarken "Acaba lazım olur mu?" diye düşündüğünüz her şey, sahada mutlaka bir gün lazım olur. 
 
