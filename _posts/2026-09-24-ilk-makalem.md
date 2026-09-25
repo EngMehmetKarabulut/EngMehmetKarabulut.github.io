@@ -2,11 +2,7 @@
 layout: default
 title: "Mühendisin Çantası: Sahaya Giderken Hayat Kurtaran Bavul Hazırlama Rehberi"
 ---
-.post-content {
-    margin: 0 auto;       /* İçerik bloğunu (yazı alanını) sayfanın ortasına alır */
-    max-width: 800px;     /* Satırların çok uzamasını engelleyip okunabilirliği artırır */
-    text-align: justify;  /* Metni sağa ve sola yaslayarak daha düzenli gösterir */
-}
+
 
 Bir mühendis olarak ofis ortamından çıkıp sondaj kulesinin dibine, bir üretim sahasına veya şantiyeye doğru yola çıkıyorsanız, hazırlayacağınız çanta sıradan bir seyahat bavulundan çok daha fazlası olmalıdır. Sahada hava durumu acımasız, vardiyalar uzun ve lojistik imkanlar genellikle kısıtlıdır. 
 
